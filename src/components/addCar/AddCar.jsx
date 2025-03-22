@@ -1,14 +1,25 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import chosePhoto from "../../images/addCar.jpg";
+import { MdOutlineSubdirectoryArrowLeft } from "react-icons/md";
+
 import "./style.css";
+import { Link } from "react-router-dom";
 const AddCar = () => {
   return (
     <section>
       <h1 className="text-center p-2 bg-light">اضافة تكعيب جديد</h1>
       <Container>
         <div className="car-data">
-          <h4>بيانات التكعيب</h4>
+          <div className="d-flex align-items-center justify-content-between">
+            <h4>بيانات التكعيب</h4>
+            <Link to={"/"} className="mb-3 text-center ">
+              <MdOutlineSubdirectoryArrowLeft
+                size={"30"}
+                className="hand border border-primary rounded text-primary"
+              />
+            </Link>
+          </div>
           <div className="border rounded p-3">
             <Row>
               <Col className="mb-2" md={3}>
