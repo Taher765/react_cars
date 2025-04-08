@@ -1,11 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import noImage from "../../images/noImage.webp";
 import { Col, Container, Row } from "react-bootstrap";
 import { MdOutlineSubdirectoryArrowLeft } from "react-icons/md";
-
 import "./style.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
+
 const Details = () => {
+  const [car, setCar] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [msgError, setMsgError] = useState({});
+
+  const { id } = useParams();
+
+  const getCarWithId = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.get(
+        `https://tset-19uo.onrender.com/cubes/${id}`
+      );
+      setCar(data);
+      setLoading(false);
+    } catch (err) {
+      setMsgError({ error: err.message });
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getCarWithId();
+  }, []);
+
   return (
     <section className="details py-2">
       <Container className="container">
